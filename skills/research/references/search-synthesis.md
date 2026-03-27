@@ -10,9 +10,9 @@ At the start of every research session, resolve the scratch space path before do
 
 ### Steps
 
-1. **Read config**: Read `config/config.json` and parse it as JSON.
+1. **Read config**: Read `.zettledeck/zettledeck-foundry/config.json` and parse it as JSON.
    - If the file is missing, unreadable, or contains invalid JSON, set `scratchSpaceRoot` to `Tesseract/` and warn the user:
-     > ⚠️ Could not read `config/config.json` — using default scratch space `Tesseract/`.
+     > ⚠️ Could not read `.zettledeck/zettledeck-foundry/config.json` — using default scratch space `Tesseract/`.
    - If the file is readable, continue to step 2.
 
 2. **Extract scratch space path**: Look for the `researchScratchSpace` key in the parsed config object.
@@ -21,7 +21,7 @@ At the start of every research session, resolve the scratch space path before do
 
 3. **Validate the path is not inside a scope folder**: Check whether any segment of the resolved `scratchSpaceRoot` path starts with `S` followed by one or more digits and then an underscore (the pattern `S{digits}_`, e.g. `S4061_AmazonSA`).
    - If the path is inside a scope folder (any path segment matches `S\d+_`), **reject the path**. Do not use it. Report the conflict to the user:
-     > 🚫 The configured scratch space path `{path}` is inside a scope folder. Research scratch space must not overlap with scope folders. Please update the `researchScratchSpace` value in `config/config.json` and try again.
+     > 🚫 The configured scratch space path `{path}` is inside a scope folder. Research scratch space must not overlap with scope folders. Please update the `researchScratchSpace` value in `.zettledeck/zettledeck-foundry/config.json` and try again.
    - Then **stop** — do not proceed with the research session until the user updates the config.
 
 4. **Ensure the directory exists**: If `scratchSpaceRoot` does not exist on disk, create it. This is a silent operation — no user confirmation needed for creating the scratch space directory.

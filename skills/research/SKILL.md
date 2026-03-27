@@ -62,7 +62,7 @@ Output formats:
   • white-paper  → Abstract, Intro, Background, Analysis, Findings, Recommendations, References
 
 Scratch space:
-  • Location read from config/config.json → researchScratchSpace (default: Tesseract/)
+  • Location read from `.zettledeck/zettledeck-foundry/config.json` → researchScratchSpace (default: Tesseract/)
   • Each session gets its own directory: {YYYYMMDD}-{slug}/
   • Scratch space is deleted after storage or discard
 
@@ -91,7 +91,7 @@ Then stop — do not proceed to the steps below.
 **Tools needed**: Read, Write, Glob
 
 **Referenced files**:
-- `config/config.json` - Scratch space path configuration
+- `.zettledeck/zettledeck-foundry/config.json` - Scratch space path configuration
 - `.kiro/agents/narrative-reviewer.md` or `.claude/agents/narrative-reviewer.md` - Document review
 - Vault steering files - For markdown conventions
 
@@ -142,7 +142,7 @@ At the start of every research session, resolve the scratch space path before do
 **See `references/search-synthesis.md` for detailed configuration steps.**
 
 **Summary**:
-1. Read `config/config.json` and parse `researchScratchSpace` key
+1. Read `.zettledeck/zettledeck-foundry/config.json` and parse `researchScratchSpace` key
 2. Default to `Tesseract/` if config missing or key not present
 3. Validate path is NOT inside a scope folder (reject `S\d+_*` pattern)
 4. Create scratch space directory if it doesn't exist
