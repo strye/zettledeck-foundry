@@ -1,5 +1,5 @@
 ---
-name: research.deep
+name: research
 description: Research a topic across public and internal sources, gather structured notes in scratch space, synthesize findings, and produce schema-compliant documents for the repository. Supports both standalone and blackboard-driven modes.
 ---
 
@@ -17,8 +17,8 @@ Operates autonomously within its scratch space — searching, reading, and synth
 
 **Standalone**:
 ```
-/research.deep {topic}
-/research.deep help
+/research {topic}
+/research help
 ```
 
 **Board mode** (invoked by bb.exec):
@@ -104,7 +104,7 @@ Then stop — do not proceed to the steps below.
 
 ### Standalone Mode
 **Triggers**:
-- User invokes skill directly: `/research.deep {topic}`
+- User invokes skill directly: `/research {topic}`
 - No board context provided
 - User explicitly requests standalone operation
 
@@ -245,7 +245,7 @@ At the start of every research session, resolve the scratch space path before do
 ### Board Section Format
 ```markdown
 ## 🔍 Research: {Topic} [ready]
-<!-- agent-id: research.deep | cycle: 1 | updated: 2026-03-15T10:00:00 -->
+<!-- agent-id: research | cycle: 1 | updated: 2026-03-15T10:00:00 -->
 
 ### Recommendations
 - Topic: "{research topic}"
@@ -258,13 +258,13 @@ At the start of every research session, resolve the scratch space path before do
 {user can provide additional context or refinements}
 
 ### Cycle {N} Results
-{research.deep writes summary here after execution}
+{research writes summary here after execution}
 ```
 
 ### Board Mode Execution Flow
 1. bb.exec reads section marked `[ready]`
-2. bb.exec invokes `research.deep` with board context
-3. research.deep:
+2. bb.exec invokes `research` with board context
+3. research:
    - Runs Phase 1-2 autonomously (search, synthesis)
    - Generates full document
    - Routes through narrative review
@@ -312,12 +312,11 @@ This structure keeps the main skill readable while preserving all functionality 
 
 ---
 
-## Future Capabilities
+## Future Modes
 
-**Planned expansions** for `research.*` domain:
-- `research.quick` - Single-source summary (no synthesis)
-- `research.compare` - A/B comparison focused (2 specific items)
-- `research.monitor` - Ongoing topic tracking (scheduled searches)
-- `research.validate` - Fact-checking existing content
+**Planned modes** for the `research` skill:
+- `quick` - Single-source summary (no synthesis)
+- `compare` - A/B comparison focused (2 specific items)
+- `validate` - Fact-checking existing content
 
-**Board integration** ready for all future research skills - same section format, different execution logic.
+**Board integration** ready for all future modes — same section format, different execution logic.

@@ -1,6 +1,6 @@
 # Search & Synthesis Workflow
 
-Complete Phase 1-2 logic for research.deep skill.
+Complete Phase 1-2 logic for research skill.
 
 ---
 

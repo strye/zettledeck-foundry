@@ -1,6 +1,6 @@
 # Document Generation Reference
 
-Complete Phase 3 logic for research.deep skill: format selection, document generation, narrative review, and repository write.
+Complete Phase 3 logic for research skill: format selection, document generation, narrative review, and repository write.
 
 ---
 
@@ -492,7 +492,7 @@ Read parent note, append to `## Related` section (or create if missing):
 
 ### Write Changelog Entry
 
-Append to `filo-fax/changelog.md` (or create if missing):
+Append to `Praxis/changelog.md` (or create if missing):
 
 ```markdown
 ## {YYYY-MM-DD} — Research: {Topic}

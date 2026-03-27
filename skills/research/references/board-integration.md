@@ -1,12 +1,12 @@
 # Board Integration Reference
 
-Complete specification for research.deep integration with bb.exec (Blackboard) workflow.
+Complete specification for research integration with bb.exec (Blackboard) workflow.
 
 ---
 
 ## Overview
 
-**research.deep** supports two operating modes:
+**research** supports two operating modes:
 
 1. **Standalone mode** — User invokes directly, three interactive approval gates
 2. **Board mode** — Invoked by bb.exec, autonomous execution with summary feedback
@@ -20,7 +20,7 @@ This file specifies board mode behavior: section format, execution flow, result 
 At skill invocation, determine operating mode:
 
 ### Standalone Mode Triggers
-- User invokes skill directly: `/research.deep {topic}`
+- User invokes skill directly: `/research {topic}`
 - No board context provided in invocation
 - User explicitly requests standalone operation
 
@@ -51,7 +51,7 @@ Blackboard sections for research follow this structure:
 
 ```markdown
 ## 🔍 Research: {Topic} [ready]
-<!-- agent-id: research.deep | cycle: 1 | updated: 2026-03-15T10:00:00 -->
+<!-- agent-id: research | cycle: 1 | updated: 2026-03-15T10:00:00 -->
 
 ### Recommendations
 
@@ -67,7 +67,7 @@ Blackboard sections for research follow this structure:
 
 ### Cycle 1 Results
 
-{research.deep writes summary here after execution}
+{research writes summary here after execution}
 ```
 
 ### Field Descriptions
@@ -78,7 +78,7 @@ Blackboard sections for research follow this structure:
 - Status tag: `[ready]` or `[ready:N]` (N = cycle number)
 
 **HTML comment** (metadata):
-- `agent-id`: Always `research.deep` for research tasks
+- `agent-id`: Always `research` for research tasks
 - `cycle`: Current iteration number (1, 2, 3...)
 - `updated`: ISO timestamp of last update
 
@@ -95,7 +95,7 @@ Blackboard sections for research follow this structure:
 - Used to guide search strategy or synthesis focus
 
 **Cycle N Results subsection**:
-- Created/updated by research.deep after execution
+- Created/updated by research after execution
 - Contains summary of findings, open questions, repository path
 - Numbered by cycle (Cycle 1, Cycle 2, etc.)
 
@@ -111,10 +111,10 @@ bb.exec (Blackboard executor) reads board file, identifies section marked `[read
 ## 🔍 Research: Bedrock Agents vs LangGraph [ready:1]
 ```
 
-bb.exec invokes research.deep with board context:
+bb.exec invokes research with board context:
 
 ```
-Invoke: research.deep
+Invoke: research
 Board context:
   - Section: "Research: Bedrock Agents vs LangGraph"
   - Topic: "Compare Amazon Bedrock Agents and LangGraph for agentic workflows"
@@ -128,11 +128,11 @@ Board context:
 
 ### Step 1: Update Status to Executing
 
-research.deep updates board section status tag:
+research updates board section status tag:
 
 ```markdown
 ## 🔍 Research: Bedrock Agents vs LangGraph [executing:1]
-<!-- agent-id: research.deep | cycle: 1 | updated: 2026-03-15T10:05:00 -->
+<!-- agent-id: research | cycle: 1 | updated: 2026-03-15T10:05:00 -->
 ```
 
 **Purpose**: Signals to user/system that work is in progress.
@@ -171,7 +171,7 @@ Use placement info from board metadata:
 Write files:
 - Main findings document: `{scope-path}/C{scopeID}_{slug}.md`
 - Promoted source notes (if applicable): `{scope-path}/N{scopeID}_{source-slug}.md`
-- Changelog entry: `filo-fax/changelog.md`
+- Changelog entry: `Praxis/changelog.md`
 - Update parent note backlinks (if parent provided)
 
 ### Step 5: Write Summary to Board Section
@@ -205,13 +205,13 @@ Update board section status:
 **On success**:
 ```markdown
 ## 🔍 Research: Bedrock Agents vs LangGraph [done:1]
-<!-- agent-id: research.deep | cycle: 1 | updated: 2026-03-15T10:42:00 -->
+<!-- agent-id: research | cycle: 1 | updated: 2026-03-15T10:42:00 -->
 ```
 
 **On error**:
 ```markdown
 ## 🔍 Research: Bedrock Agents vs LangGraph [error:1]
-<!-- agent-id: research.deep | cycle: 1 | updated: 2026-03-15T10:15:00 -->
+<!-- agent-id: research | cycle: 1 | updated: 2026-03-15T10:15:00 -->
 ```
 
 ### Step 7: Cleanup Scratch Space
@@ -222,7 +222,7 @@ Delete scratch space directory: `{scratchSpaceRoot}/{session-dir}/`
 
 ### Step 8: Return to bb.exec
 
-research.deep reports completion to bb.exec:
+research reports completion to bb.exec:
 
 ```
 ✅ Research complete
@@ -320,7 +320,7 @@ User edits board section:
 
 3. Re-runs bb.exec
 
-### research.deep Action
+### research Action
 
 On second invocation:
 
@@ -341,7 +341,7 @@ On second invocation:
 
 | Aspect | Standalone Mode | Board Mode |
 |--------|----------------|------------|
-| **Invocation** | User types `/research.deep {topic}` | bb.exec reads board section `[ready]` |
+| **Invocation** | User types `/research {topic}` | bb.exec reads board section `[ready]` |
 | **Phase 1-2** | Interactive self-review loop | Fully autonomous (no user prompts) |
 | **Gate 1** | Present synthesis, ask store/refine/discard | Auto-proceed (no gate) |
 | **Gate 2** | Present reviewed draft, ask approve/edit/discard | Auto-proceed (no gate) |
@@ -362,17 +362,17 @@ Board section status tag progresses through these states:
     ↓
 [ready] or [ready:1] → User signals: "Execute now"
     ↓
-[executing:1] → research.deep updates at start
+[executing:1] → research updates at start
     ↓
-[done:1] or [error:1] → research.deep updates at end
+[done:1] or [error:1] → research updates at end
     ↓
 (if user wants refinement)
     ↓
 [ready:2] → User edits Response section, re-runs
     ↓
-[executing:2] → research.deep updates at start (cycle 2)
+[executing:2] → research updates at start (cycle 2)
     ↓
-[done:2] or [error:2] → research.deep updates at end
+[done:2] or [error:2] → research updates at end
     ↓
 (repeat as needed...)
 ```
@@ -419,7 +419,7 @@ Board section status tag progresses through these states:
 
 ## Board Section Parsing
 
-When invoked by bb.exec, research.deep must parse board section to extract:
+When invoked by bb.exec, research must parse board section to extract:
 
 ### Required Fields
 
@@ -481,7 +481,7 @@ bb.exec (Blackboard executor skill) handles:
 5. Monitoring status tag updates
 6. Logging execution results
 
-**research.deep** handles:
+**research** handles:
 
 1. Accepting board context from bb.exec
 2. Updating status tags throughout execution
@@ -505,7 +505,7 @@ Potential improvements to board integration:
 
 **Multi-topic research**:
 - Board section lists multiple related topics
-- research.deep runs each, synthesizes across all
+- research runs each, synthesizes across all
 - Single findings document covering all topics
 
 **Confidence thresholds**:
@@ -518,7 +518,7 @@ Potential improvements to board integration:
 - Control scope and depth of research
 
 **Integration with other skills**:
-- research.deep findings feed into narrative skills (PRFAQ, six-pager)
+- research findings feed into narrative skills (PRFAQ, six-pager)
 - Board section chains: Research → PRFAQ → Review
 
 ---

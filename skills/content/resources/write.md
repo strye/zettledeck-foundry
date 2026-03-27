@@ -4,8 +4,8 @@ Generate three writing versions from vault insights.
 
 ## Usage
 
-- `/learning write` (auto-detect topic from today)
-- `/learning write [topic]` (explicit topic)
+- `/content write` (auto-detect topic from today)
+- `/content write [topic]` (explicit topic)
 
 ## Six-Step Workflow
 

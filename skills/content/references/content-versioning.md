@@ -1,14 +1,6 @@
----
-name: content-versioning
-description: Content versioning workflow — source protection, working copies, version numbering, promotion process, changelog format, and editing practices. Activated when editing, revising, iterating on, or reviewing content files.
-user-invocable: false
-version: 1.0.0
-tags: [content, versioning, workflow, editing]
----
-
 # Content Versioning Workflow
 
-Background knowledge for content editing operations. Auto-loaded when editing, revising, iterating on, or reviewing content files.
+Background knowledge for content editing operations. Load when editing, revising, iterating on, or reviewing content files.
 
 ## Core Rule
 

@@ -10,11 +10,9 @@ Content creation and deep research module for ZettleDeck. Research workflows, pr
 
 | Skill | Modes | Description |
 |-------|-------|-------------|
-| `research.deep` | (multi-phase) | Research topics across public and internal sources, synthesize into schema-compliant documents |
-| `comms.compose` | (iterative) | Draft professional correspondence with file-based workspace and conversation tracking |
-| `learning` | `write`, `compile` | Generate writing pieces and compile weekly learnings from vault insights |
-| `content` | `suggest-topics` | Find what to write next by analyzing vault density, energy, and synthesis potential |
-| `content-versioning` | (reference) | Background knowledge for content editing — source protection, working copies, changelogs |
+| `research` | (multi-phase) | Research topics across public and internal sources, synthesize into schema-compliant documents |
+| `comms` | (iterative) | Draft professional correspondence with file-based workspace and conversation tracking |
+| `content` | `suggest-topics`, `write` | Content creation — topic suggestions from vault analysis and writing pieces from vault insights. Includes content versioning reference. |
 
 ---
 
@@ -53,26 +51,24 @@ This walks you through:
 ## Quick Start
 
 ```
-/research.deep                    — Start a deep research session
-/research.deep topic              — Research a specific topic
+/research                    — Start a deep research session
+/research topic              — Research a specific topic
 
-/comms.compose                    — Start a new draft
-/comms.compose path/to/draft.md   — Continue working on an existing draft
-
-/learning write                   — Generate writing from today's insights
-/learning write topic             — Generate writing on a specific topic
-/learning compile                 — Compile weekly learnings for team
+/comms                    — Start a new draft
+/comms path/to/draft.md   — Continue working on an existing draft
 
 /content suggest-topics           — Find what to write next from vault analysis
+/content write                    — Generate writing from today's insights
+/content write topic              — Generate writing on a specific topic
 ```
 
 ---
 
 ## Optional Integration
 
-**rostrum-blackboard:** The `research.deep` skill integrates with a shared blackboard for multi-session research continuity. When a blackboard is active, research notes and source tracking persist across sessions. Install `rostrum-blackboard` to enable.
+**rostrum-blackboard:** The `research` skill integrates with a shared blackboard for multi-session research continuity. When a blackboard is active, research notes and source tracking persist across sessions. Install `rostrum-blackboard` to enable.
 
-**zettledeck-nexus:** The `learning write` and `learning compile` modes pair well with `ideas.generate` and `vault.build-context` from nexus for a complete content creation pipeline.
+**zettledeck-nexus:** The `content write` mode pairs well with `ideas.generate` and `vault.build-context` from nexus for a complete content creation pipeline.
 
 ---
 
@@ -84,7 +80,7 @@ All content editing in Foundry follows a protect-the-source pattern:
 - Changelogs track every version with context
 - Explicit promotion step to publish revisions
 
-The `content-versioning` skill auto-loads as background knowledge whenever you edit, revise, or iterate on content files.
+The content versioning reference (`content/references/content-versioning.md`) is loaded when editing, revising, or iterating on content files.
 
 ---
 
@@ -92,4 +88,4 @@ The `content-versioning` skill auto-loads as background knowledge whenever you e
 
 This module is part of the [ZettleDeck](https://github.com/your-org/zettledeck-core) ecosystem. Core functionality requires `zettledeck-core`.
 
-Other modules: [zettledeck-almanac](../zettledeck-almanac/) · [zettledeck-nexus](../zettledeck-nexus/)
+Other modules: [zettledeck-praxis](../zettledeck-praxis/) · [zettledeck-nexus](../zettledeck-nexus/)
