@@ -1,0 +1,25 @@
+{
+  "module": "foundry",
+  "documentTypes": [
+    {
+      "docType": "ideation",
+      "prefix": "I",
+      "description": "Brainstorming and idea capture",
+      "validParents": ["scope", "focus", "project", "objective", "content"],
+      "defaultStatus": "na",
+      "subTypes": ["general", "research", "professional"],
+      "placement": { "type": "named-subfolder", "folder": "Ideation" },
+      "source": "foundry"
+    },
+    {
+      "docType": "research",
+      "prefix": "R",
+      "description": "Research and analysis notes",
+      "validParents": ["scope", "focus", "project", "objective", "content"],
+      "defaultStatus": "active",
+      "subTypes": ["domain", "strategic", "foundational", "framing"],
+      "placement": { "type": "same-folder" },
+      "source": "foundry"
+    }
+  ]
+}
